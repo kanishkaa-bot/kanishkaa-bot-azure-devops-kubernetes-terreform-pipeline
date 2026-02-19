@@ -5,7 +5,7 @@ pool:
   name: Default   # Use your self-hosted agent pool
  
 steps:
-- script: echo Hello, world!
+- script: echo Hello, vidyesh
   displayName: 'Run a one-line script'
  
 - script: |
