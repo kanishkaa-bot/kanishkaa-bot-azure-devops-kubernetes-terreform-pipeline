@@ -2,13 +2,21 @@ trigger:
 - main
  
 pool:
-  name: Default   # Use your self-hosted agent pool
+  name: Default  # Use your self-hosted agent pool
  
-steps:
-- script: echo Hello, vidyesh
-  displayName: 'Run a one-line script'
+jobs:
+- job: WelcomeJob
+  displayName: "Job 1 - Welcome"
+  steps:
+  - script: echo Welcome to My Universe
+    displayName: "Run a one-line script"
  
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- job: InfoJob
+  displayName: "Job 2 - Info"
+  dependsOn: WelcomeJob
+  condition: succeeded()
+  steps:
+  - script: |
+      echo Add other tasks to build, test, and deploy your project.
+      echo See https://aka.ms/yaml
+    displayName: "Run a multi-line script"
