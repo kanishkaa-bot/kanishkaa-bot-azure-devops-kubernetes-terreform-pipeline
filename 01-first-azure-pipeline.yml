@@ -1,18 +1,24 @@
 trigger:
 - main
- 
+
 pool:
   name: Default  # Use your self-hosted agent pool
- 
+
 jobs:
 - job: WelcomeJob
   displayName: "Job 1 - Welcome"
   steps:
   - script: echo Welcome to My Universe
     displayName: "Run a one-line script"
- 
+
+- job: Job2
+  dependsOn: WelcomeJob
+  steps:
+  - script: echo Job2!
+    displayName: "Run a one line script"
+
 - job: InfoJob
-  displayName: "Job 2 - Info"
+  displayName: "Job 3 - Info"
   dependsOn: WelcomeJob
   condition: succeeded()
   steps:
