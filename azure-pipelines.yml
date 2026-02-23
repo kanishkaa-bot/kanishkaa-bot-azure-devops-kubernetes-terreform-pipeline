@@ -1,0 +1,22 @@
+trigger:
+- main
+
+pool:
+  name: Default
+
+variables:
+  dockerRegistryServiceConnection: 'YOUR_SERVICE_CONNECTION_NAME'
+  imageRepository: 'myapp'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  tag: '$(Build.BuildId)'
+
+steps:
+- task: Docker@2
+  displayName: Build and push an image
+  inputs:
+    command: buildAndPush
+    containerRegistry: $(dockerRegistryServiceConnection)
+    repository: $(imageRepository)
+    Dockerfile: $(dockerfilePath)
+    tags: |
+      $(tag)
